@@ -20,19 +20,17 @@ weatherForm.addEventListener("submit", (e) => {
   messageOne.textContent = "Loading page"; // pwede mabago yung message sa msg1
   messageTwo.textContent = "";
 
-  fetch("http://localhost:3000/weather?address=" + location).then(
-    (response) => {
-      response.json().then((data) => {
-        if (data.error) {
-          messageOne.textContent = data.error;
-          //   console.log(data.error);
-        } else {
-          messageOne.textContent = data.forecast;
-          messageTwo.textContent = data.location;
-          //   console.log(data.forecast);
-          //   console.log(data.location);
-        }
-      });
-    }
-  );
+  fetch("/weather?address=" + location).then((response) => {
+    response.json().then((data) => {
+      if (data.error) {
+        messageOne.textContent = data.error;
+        //   console.log(data.error);
+      } else {
+        messageOne.textContent = data.forecast;
+        messageTwo.textContent = data.location;
+        //   console.log(data.forecast);
+        //   console.log(data.location);
+      }
+    });
+  });
 });
